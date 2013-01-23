@@ -51,13 +51,9 @@ class UbersmithCartComponent extends Component
 		}
 	}
 	
-	public function navigation_summary($cart = null)
+	public function navigation_summary()
 	{
-		if (empty($cart)) {
-			$cart = $this->cart;
-		}
-		
-		if (empty($cart)) {
+		if (empty($this->cart['CartItem'])) {
 			return array(
 				'summary_monthly_price' => 0,
 				'summary_setup_fee'     => 0,
@@ -73,7 +69,7 @@ class UbersmithCartComponent extends Component
 		
 		$coupons = $this->coupons();
 		
-		foreach ($cart['CartItem'] as $key => $cart_item) {
+		foreach ($this->cart['CartItem'] as $key => $cart_item) {
 			foreach ($cart_item['CartItemUpgrade'] as $k => $cart_item_upgrade) {
 				$selected_upgrades[$cart_item_upgrade['upgrade']] = $cart_item_upgrade['upgrade_option'];
 			}
@@ -220,23 +216,62 @@ class UbersmithCartComponent extends Component
 		$summary_navigation = array(
 			'summary_monthly_price' => $monthly_total,
 			'summary_setup_fee'     => $setup_fee_total,
-			'summary_items'         => count($cart['CartItem']),
+			'summary_items'         => count($this->cart['CartItem']),
 		);
 		
 		return $summary_navigation;
 	}
 	
-	public function is_in_cart($cart = null, $item_id)
+	public function is_in_cart($request = array())
 	{
-		if (is_null($cart)) {
-			$cart = $this->cart;
+		if (empty($request['item_id'])) {
+			return false;
 		}
-		foreach ($cart['CartItem'] as $cart_item) {
-			if ($cart_item['id'] == $item_id) {
+		
+		if (empty($this->cart['CartItem'])) {
+			return false;
+		}
+		
+		foreach ($this->cart['CartItem'] as $cart_item) {
+			if ($cart_item['id'] == $request['item_id']) {
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	public function update_item($request = array())
+	{
+		if (empty($request['item_id']) || empty($request['upgrades'])) {
+			throw new UberException(__('Invalid item id or upgrades specified'), 1);
+		}
+		
+		if (!$this->is_in_cart($request)) {
+			throw new UberException(__('Item is not in cart'), 2);
+		}
+		
+		$updated = false;
+		foreach ($this->cart['CartItem'] as $cart_item) {
+			if ($cart_item['id'] != $request['item_id']) {
+				continue;
+			}
+			foreach ($cart_item['CartItemUpgrade'] as $k => $cart_item_upgrade) {
+				if (empty($_POST['upgrades'][$cart_item_upgrade['upgrade']])) {
+					continue;
+				}
+				$updated = true;
+				$this->controller->CartItemUpgrade->save(array(
+					'id'             => $cart_item_upgrade['id'],
+					'upgrade_option' => $_POST['upgrades'][$cart_item_upgrade['upgrade']],
+				));
+			}
+		}
+		
+		if (!$updated) {
+			throw new UberException(__('There was a problem updating the item'), 3);
+		}
+		
+		return true;
 	}
 	
 	public function update_hostnames($request = array())
@@ -252,8 +287,6 @@ class UbersmithCartComponent extends Component
 		
 		$quantities = $this->Session->read('quantities');
 		
-/* 		var_dump('here',$hostnames[$request['item_id']],$quantities[$request['item_id']]); */
-		
 		$hostnames_count = count($hostnames[$request['item_id']]);
 		if ($hostnames_count == $quantities[$request['item_id']]) {
 			return false;
@@ -264,8 +297,6 @@ class UbersmithCartComponent extends Component
 			// add more elements to the hostnames array
 			$hostnames[$request['item_id']] = array_merge($hostnames[$request['item_id']], array_fill(0, ($quantities[$request['item_id']] - $hostnames_count), ''));
 		}
-		
-		var_dump($hostnames);
 		
 		$this->Session->write('hostnames', $hostnames);
 		
@@ -289,8 +320,6 @@ class UbersmithCartComponent extends Component
 		$hostnames = $this->Session->read('hostnames');
 		
 		$hostnames[$request['item_id']][$request['hostname_id']] = $request['hostname'];
-		
-		var_dump($hostnames);
 		
 		$this->Session->write('hostnames', $hostnames);
 		
@@ -329,11 +358,7 @@ class UbersmithCartComponent extends Component
 			throw new UberException(__('No coupon code specified'), 1);
 		}
 		
-		if (empty($request['cart'])) {
-			$cart = $this->cart;
-		}
-		
-		if (empty($cart)) {
+		if (empty($this->cart)) {
 			throw new UberException(__('No cart specified'), 2);
 		}
 		
@@ -368,11 +393,7 @@ class UbersmithCartComponent extends Component
 			throw new UberException(__('No coupon code specified'), 1);
 		}
 		
-		if (empty($request['cart'])) {
-			$cart = $this->cart;
-		}
-		
-		if (empty($cart)) {
+		if (empty($this->cart)) {
 			throw new UberException(__('No cart specified'), 2);
 		}
 		
@@ -391,8 +412,8 @@ class UbersmithCartComponent extends Component
 		}
 		
 		$cart_service_plans = array();
-		if (!empty($cart)) {
-			foreach ($cart['CartItem'] as $k => $cart_item) {
+		if (!empty($this->cart['CartItem'])) {
+			foreach ($this->cart['CartItem'] as $k => $cart_item) {
 				$cart_service_plans[] = $cart_item['service_plan_id'];
 			}
 		}

@@ -21,8 +21,7 @@ App::uses('AppController', 'Controller');
 
 class ConfiguratorController extends AppController
 {
-	
-	public $uses = array('UberApi', 'UberServicePlan', 'Cart', 'CartItem', 'CartItemUpgrade', 'CartItemHostname', 'Utilities', 'Msas', 'SavedRack', 'SavedCartItem', 'SavedCartItemHostname', 'SavedCartItemUpgrade', 'SavedCart');
+	public $uses = array('UberApi', 'UberServicePlan', 'Cart', 'CartItem', 'CartItemUpgrade', 'CartItemHostname', 'Utilities');
 	
 	public $components = array('Session', 'UbersmithCart', 'SWFTool');
 	
@@ -431,7 +430,16 @@ class ConfiguratorController extends AppController
 					$selected_upgrade->callout_upgrades = $upgrade_options;
 					$selected_upgrade->default_callout_upgrade_option_id = @$default_upgrade_option_id3;
 				}
-				if (!isset($selected_upgrade->monthly_price) || ($selected_upgrade->monthly_price == 0 && preg_match('/^none$/i', $selected_upgrade->value) > 0 && empty($selected_upgrade->is_callout_upsell))) {
+				if (
+					(
+						!isset($selected_upgrade->monthly_price) ||
+						(
+							$selected_upgrade->monthly_price == 0 &&
+							preg_match('/^none$/i', $selected_upgrade->value) > 0
+						)
+					) &&
+					empty($selected_upgrade->is_callout_upsell)
+				) {
 					continue;
 				}
 				$item->upgrades[] = $selected_upgrade;
@@ -1086,58 +1094,6 @@ class ConfiguratorController extends AppController
 			'monthly_price_one_time_discount_amount'  => $monthly_price_one_time_discount_amount,
 			'monthly_price_recurring_discount_amount' => $monthly_price_recurring_discount_amount,
 		));
-	}
-	
-	public function ajax_step_two()
-	{
-		
-		$session_cart = $this->Session->read('Cart');
-		
-		if (empty($_POST) || empty($this->cart_item_id)) {
-			$this->cakeError('error404');
-		} else{
-			
-			if (!in_array($this->service_plan_id, $this->UbersmithCart->service_plans())) {
-				$this->cakeError('error404');
-			}
-			
-			$service_plan_api_array = array(
-				'method' => 'uber.service_plan_get',
-				'plan_id' => $this->service_plan_id,
-			);
-			$uber_service_plan = $this->UberApi->call_api($service_plan_api_array);
-			if (empty($uber_service_plan->error_code)) {
-				$service_plan = $uber_service_plan->data;
-			} else {
-				$this->cakeError('error404');
-			}
-				
-			if (empty($session_cart)) {
-				$this->cakeError('error404');
-			}
-			else {
-				$cart = $this->Cart->read(null, $session_cart['Cart']['id']);
-			}
-			
-			$errors = array();
-			
-			$cart_item = $this->CartItem->find('first', array('conditions' => array('CartItem.id' => $this->cart_item_id, 'CartItem.cart_id' => $cart['Cart']['id'])));
-			if (empty($cart_item['CartItem']['id'])) {
-				$this->cakeError('error404');
-			}
-			
-			$cart_item_id = $cart_item['CartItem']['id'];
-			foreach ($cart_item['CartItemUpgrade'] as $k => $cart_item_upgrade) {
-				if (!empty($_POST['upgrades'][$cart_item_upgrade['upgrade']])) {
-					$this->CartItemUpgrade->save(array(
-						'id' => $cart_item_upgrade['id'],
-						'upgrade_option' => $_POST['upgrades'][$cart_item_upgrade['upgrade']],
-					));
-				}
-			}
-			echo 'ok';
-			exit;
-		}
 	}
 	
 	public function step_2()

@@ -118,8 +118,8 @@
 									</label>
 								</div>
 							<?php endforeach; // callout_upgrades ?>
-							<input type="button" class="update-upsell-button" value="Update" onclick="save_upsell_option(<?php echo $item->service_plan_id; ?>, <?php echo $item->id; ?>, <?php echo $upgrade_id; ?>);" />
-							<input type="button" class="update-upsell-button" value="Cancel" onclick="cancel_upsell(<?php echo $item->id; ?>, <?php echo $upgrade_id; ?>, <?php echo $upgrade->default_callout_upgrade_option_id; ?>);" />
+							<input type="button" class="update-upsell-button" value="<?php echo __('Update'); ?>" onclick="save_upsell_option(<?php echo $item->service_plan_id; ?>, <?php echo $item->id; ?>, <?php echo $upgrade_id; ?>);" />
+							<input type="button" class="update-upsell-button" value="<?php echo __('Cancel'); ?>" onclick="cancel_upsell(<?php echo $item->id; ?>, <?php echo $upgrade_id; ?>, <?php echo $upgrade->default_callout_upgrade_option_id; ?>);" />
 						</div>
 					<?php endif; ?>
 				<?php endforeach; ?>

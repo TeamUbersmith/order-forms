@@ -198,47 +198,46 @@ div.applied_coupons {
 }
 
 #product_image {
-  padding: 43px 0 0 26px;
+	padding: 43px 0 0 26px;
 }
 
 #product_description {
-  position: relative;
-  bottom: 30px;
-  right: 41px;
+	position: relative;
+	bottom: 30px;
+	right: 41px;
 }
 
 #product_description ul {
-  font-size: 13px;
-  color: #999;
-  list-style-type: none;
+	font-size: 13px;
+	color: #999;
+	list-style-type: none;
 }
 
 #product_description ul li {
-  text-indent: 5px;
+	text-indent: 5px;
 }
 
 #product_description ul li:before {
-  content: "-";
-  position: relative;
-  left: -3px;
+	content: "-";
+	position: relative;
+	left: -3px;
 }
-  	
 
 .page-header h2{
-    font-size: 41px;
-    margin: 0;
-    padding: 30px 0 20px 0;
-    font-weight: 200;
+	font-size: 41px;
+	margin: 0;
+	padding: 30px 0 20px 0;
+	font-weight: 200;
 }
 .summary{
-    text-align: center;
-    border: 1px solid #d9d9d9;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    margin-top: 10px;
-    margin-bottom: 14px;
-    padding-bottom: 12px;
+	text-align: center;
+	border: 1px solid #d9d9d9;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	margin-top: 10px;
+	margin-bottom: 14px;
+	padding-bottom: 12px;
 }
 
 .summary-header{
@@ -274,134 +273,99 @@ div.applied_coupons {
     padding: 0;
 }
 .summary-config h4, .summary-coupons h4 {
-    color: #333;
-    padding: 5px 0;
-    margin: 10px;
-    margin-top: 0px;
-    text-transform: uppercase;
-    font-size: 10px;
-    border-bottom: 1px solid #dcdbd9;
+	color: #333;
+	padding: 5px 0;
+	margin: 10px;
+	margin-top: 0px;
+	text-transform: uppercase;
+	font-size: 10px;
+	border-bottom: 1px solid #dcdbd9;
 }
 span.summary-coupon {
-    font-weight: normal;
-    font-size: 10px;
+	font-weight: normal;
+	font-size: 10px;
 	text-align: left;
 	display: inline;
 }
 #setup-fee{
-    color: #666;
-    font-size: 12px;
-    display: block;
-    padding: 15px;
+	color: #666;
+	font-size: 12px;
+	display: block;
+	padding: 15px;
 }
 
 .signupcontainer {
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 7px 36px 7px 13px;
-    border-top: 1px solid #EBB696;
-    border-left: 1px solid #EBB696;
-    border-bottom: 1px solid #9B4310;
-    border-right: 1px solid #9B4310;
-    background: linear-gradient(bottom, #D8611C, #F37328);
-    background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#D8611C), to(#F37328));
-    background: -webkit-linear-gradient(bottom, #D8611C, #F37328) #D8611C;
-    background: -moz-linear-gradient(bottom, #D8611C, #F37328);
-    background: -ms-linear-gradient(bottom, #D8611C, #F37328);
-    background: -o-linear-gradient(bottom, #D8611C, #F37328);
-    background: linear-gradient(bottom, #D8611C, #F37328);
-    color: white;
-    border-radius: 2px;
-    font-family: "Helvetica Neue", sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    position: relative;
-    cursor: pointer;
-    width: 175px;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 7px 36px 7px 13px;
+	border-top: 1px solid #EBB696;
+	border-left: 1px solid #EBB696;
+	border-bottom: 1px solid #9B4310;
+	border-right: 1px solid #9B4310;
+	background: linear-gradient(bottom, #D8611C, #F37328);
+	background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#D8611C), to(#F37328));
+	background: -webkit-linear-gradient(bottom, #D8611C, #F37328) #D8611C;
+	background: -moz-linear-gradient(bottom, #D8611C, #F37328);
+	background: -ms-linear-gradient(bottom, #D8611C, #F37328);
+	background: -o-linear-gradient(bottom, #D8611C, #F37328);
+	background: linear-gradient(bottom, #D8611C, #F37328);
+	color: white;
+	border-radius: 2px;
+	font-family: "Helvetica Neue", sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	position: relative;
+	cursor: pointer;
+	width: 175px;
 }
 
 input.continue {
-    width:123px;
-    height:30px;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 7px 36px 7px 13px;
-    border-top: 1px solid #EBB696;
-    border-left: 1px solid #EBB696;
-    border-bottom: 1px solid #9B4310;
-    border-right: 1px solid #9B4310;
-    background-color: #E36821;
-    background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#D8611C), to(#F37328));
-    background: -webkit-linear-gradient(bottom, #D8611C, #F37328) #D8611C;
-    background: -moz-linear-gradient(bottom, #D8611C, #F37328);
-    background: -ms-linear-gradient(bottom, #D8611C, #F37328);
-    background: -o-linear-gradient(bottom, #D8611C, #F37328);
-    background: linear-gradient(bottom, #D8611C, #F37328);
-    color: white;
-    border-radius: 2px;
-    font-family: "Helvetica Neue", sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    position: relative;
-    cursor: pointer;
+	width:123px;
+	height:30px;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 7px 36px 7px 13px;
+	border-top: 1px solid #EBB696;
+	border-left: 1px solid #EBB696;
+	border-bottom: 1px solid #9B4310;
+	border-right: 1px solid #9B4310;
+	background-color: #E36821;
+	background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#D8611C), to(#F37328));
+	background: -webkit-linear-gradient(bottom, #D8611C, #F37328) #D8611C;
+	background: -moz-linear-gradient(bottom, #D8611C, #F37328);
+	background: -ms-linear-gradient(bottom, #D8611C, #F37328);
+	background: -o-linear-gradient(bottom, #D8611C, #F37328);
+	background: linear-gradient(bottom, #D8611C, #F37328);
+	color: white;
+	border-radius: 2px;
+	font-family: "Helvetica Neue", sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	position: relative;
+	cursor: pointer;
 }
-/*input.continue {*/
-	/*width: 123px;*/
-	/*height: 30px;*/
-	/*background-image: url(/img/btn-continue.png);*/
-	/*background-repeat: no-repeat;*/
-	/*background-position: left center;*/
-	/*-webkit-border-radius: 3px;*/
-	/*-moz-border-radius: 3px;*/
-	/*border-radius: 3px;*/
-	/*border: 0px;*/
-	/*text-align: left;*/
-	/*text-transform: uppercase;*/
-	/*color: #fff;*/
-	/*font-size: 14px;*/
-	/*font-weight: bold;*/
-	/*padding-top: 5px;*/
-	/*padding-left: 10px;*/
-/*}*/
 input.proceed-to-checkout, input.save-rack {
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 7px 13px 7px 13px;
-    border-top: 1px solid #EBB696;
-    border-left: 1px solid #EBB696;
-    border-bottom: 1px solid #9B4310;
-    border-right: 1px solid #9B4310;
-    background-color: #E36821;
-    background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#D8611C), to(#F37328));
-    background: -webkit-linear-gradient(bottom, #D8611C, #F37328) #D8611C;
-    background: -moz-linear-gradient(bottom, #D8611C, #F37328);
-    background: -ms-linear-gradient(bottom, #D8611C, #F37328);
-    background: -o-linear-gradient(bottom, #D8611C, #F37328);
-    background: linear-gradient(bottom, #D8611C, #F37328);
-    color: white;
-    border-radius: 2px;
-    font-family: "Helvetica Neue", sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    position: relative;
-    cursor: pointer;
-
-    /*color: #fff;*/
-    /*font-size: 14px;*/
-    /*padding: 7px 10px 7px 10px;*/
-    /*border: 1px solid #b34537;*/
-    /*text-align: center;*/
-    /*-webkit-border-radius: 4px;*/
-    /*-moz-border-radius: 4px;*/
-    /*border-radius: 4px;*/
-    /*font-weight: bold;*/
-    /*background: #f0503c no-repeat;*/
-    /*background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.25) 100%), #f0503c no-repeat; *//* FF3.6+ */
-    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.25))), #f0503c no-repeat; *//* Chrome,Safari4+ */
-    /*background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%), #f0503c no-repeat; *//* Chrome10+,Safari5.1+ */
-    /*background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%), #f0503c url(/img/proceed-to-checkout.png) no-repeat; *//* Opera 11.10+ */
-    /*background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%), #f0503c url(/img/proceed-to-checkout.png) no-repeat; *//* IE10+ */
-    /*background: linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.25) 100%), #f0503c url(/img/proceed-to-checkout.png) no-repeat; *//* W3C */
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 7px 13px 7px 13px;
+	border-top: 1px solid #EBB696;
+	border-left: 1px solid #EBB696;
+	border-bottom: 1px solid #9B4310;
+	border-right: 1px solid #9B4310;
+	background-color: #E36821;
+	background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#D8611C), to(#F37328));
+	background: -webkit-linear-gradient(bottom, #D8611C, #F37328) #D8611C;
+	background: -moz-linear-gradient(bottom, #D8611C, #F37328);
+	background: -ms-linear-gradient(bottom, #D8611C, #F37328);
+	background: -o-linear-gradient(bottom, #D8611C, #F37328);
+	background: linear-gradient(bottom, #D8611C, #F37328);
+	color: white;
+	border-radius: 2px;
+	font-family: "Helvetica Neue", sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	position: relative;
+	cursor: pointer;
 }
 
 table.cart-table {
@@ -430,23 +394,22 @@ tr.cart-table-header th.subtotal-column, table.cart-table td.subtotal-column {
 	text-align: right;
 }
 
-
 .config-item {
-    text-align: left;
-    font-size: 10px;
-    color: #343433;
-    padding: 3px 10px;
+	text-align: left;
+	font-size: 10px;
+	color: #343433;
+	padding: 3px 10px;
 }
 .config-item .name{
-    float: left;
-    width: 105px;
+	float: left;
+	width: 105px;
 }
 .config-item .price{
-    float: right;
-    width: 45px;
+	float: right;
+	width: 45px;
 }
 .config-item-discount {
-    padding: 0px 10px 3px 10px;
+	padding: 0px 10px 3px 10px;
 	margin: 0px;
 }
 a {
@@ -456,10 +419,7 @@ a {
 a:hover {
 	text-decoration: underline;
 }
-div.box {
-}
-div.box h3 {
-}
+
 input.hostname, input.login,  {
 	border: 1px solid #ccc;
 	padding: 5px;
@@ -515,9 +475,9 @@ input.quantity {
 	text-align: center;
 }
 input.quantity, input.hostname,  {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 	border: 1px solid #ccc;
 }
 input.hostname {
@@ -660,7 +620,6 @@ div.steps a:hover {
 	border-bottom: 3px solid #333;
 }
 
-
 div.steps p {
 	font-size: 13px;
 	display: inline;
@@ -683,13 +642,10 @@ div.steps .step-selected {
 }
 
 .page-header .config.steps {
-    width:auto;
-    float:none;
+	width:auto;
+	float:none;
 }
 
-.new-account-select {
-
-}
 #check-order-status, #read-api-docs {
 	width: 190px;
 	height: 50px;
@@ -785,6 +741,7 @@ p.credit-card-info, p.billing-info, p.contact-info {
 div.upsell_div {
 	display: none;
 	position: absolute;
+	z-index: 500;
 	background-color: #f7f493;
 	padding: 10px;
 	margin-left: 10px;
@@ -801,78 +758,16 @@ div.upsell_div {
 	margin-left: 90px;
 }
 
-
-#click_to_call {
-	width: 170px;
-	border-radius: 5px;
-	padding: 10px 5px 13px 37px;
-	text-decoration: none;
-	background: #f37321 url('/img/whiteiphone.png') no-repeat 10px 10px;
-	display: block;
-	font-size: 11px;
-	text-transform: uppercase;
-	color: #fff;
-}
-
-#click_to_call_again {
-	width: 65px;
-	border-radius: 5px;
-	padding: 10px;
-	text-decoration: none;
-	background: #f37321;
-	display: block;
-	font-size: 11px;
-	text-transform: uppercase;
-	color: #fff;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.click_to_call p.click_to_call_text {
-	padding: 10px 40px;
-	color: #999;
-	font-style: italic;
-}
-
-.click_to_call p.information_provided {
-	padding-left: 40px;
-}
-
-.click_to_call p.information_provided span.order-id {
-	margin-left: 20px;
-}
-
-.click_to_call p.status {
-	text-align: center;
-	font-weight: bold;
-}
-
-#click_to_call_status {
-	font-weight: normal;
-	color: #f37321;
-}
-
-.click_to_call p.information_provided span.order-id-padding {
-	margin-left: 80px;
-}
-
-.click_to_call p.click_to_call_text_top {
-	padding-top: 0px;
-}
-
-#click_to_call span {
-	font-size: 16px;
-}
-
 div.close-modal {
-	background-image: url(/img/close-modal.png);
+	background-image: url(/img/lightbox_close.png);
 	background-repeat: no-repeat;
-	width: 9px;
-	height: 9px;
+	width: 38px;
+	height: 38px;
 	float: right;
 	cursor: pointer;
+	margin-right: -30px;
+	margin-top: -30px;
 }
-
 p.upgrade-option-callout {
 	padding: 3px;
 	padding-left: 10px;
@@ -988,6 +883,7 @@ div.new-credit-card {
 
 div.callout_item {
 	font-size: 12px;
+	z-index: 400;
 }
 
 div.callout_item input {
@@ -1025,8 +921,6 @@ p.edit-new-client-info a:hover {
 input.update-upsell-button {
 	width: 77px;
 	height: 25px;
-	background-image: url(/img/btn-update-callout-upsell.png);
-	background-repeat: no-repeat;
 	border: 0px;
 	color: #000;
 	font-size: 10px;

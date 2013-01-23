@@ -7,13 +7,14 @@ Features
 --------
 
 * Feature-rich order checkout process for customers
-* Orders are submitted directly to a configurable Order Manager queue
+* Encourage customers to buy value-added services during checkout process
+* Orders are submitted directly to a configurable Order Manager queue in Ubersmith
 * Supports monthly service plans with setup fees
 * Supports coupons for discounts
 * Master Services Agreement signage before placing order
 * Integrated with Twilio for fraud verification (optional)
 * Integrated with Google Analytics for tracking and statistics (optional)
-* Supports CDN delivery of static assets
+* Supports CDN delivery of static assets (optional)
 * Strings passed through i18n functions, ready for translation
 * Built on top of CakePHP 2.2
 

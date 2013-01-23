@@ -823,16 +823,20 @@ function save_upsell_option(service_plan_id, item_id, upgrade_id) {
 		post_upgrades[upgrade_id] = upgrades[item_id][upgrade_id]['selected'];
 		$.ajax({
 			type: 'POST',
-			url: '/ajax/configure/2/' + service_plan_id + '/' + item_id,
-			//url: '/',
+			url: '/ajax/update/item',
 			data: {
+				'item_id'  : item_id,
 				'upgrades' : post_upgrades
 			},
 			success: function(data) {
-				$('#p_upgrade_option_' + item_id + '_' + upgrade_id).removeClass('upgrade-option-callout');
-				$('#p_upgrade_option_' + item_id + '_' + upgrade_id).html($('#item_' + item_id + '_' + upgrade_id + '_' + upgrades[item_id][upgrade_id]['selected']).data('upgrade-text'));
-				$('#p_upgrade_option_' + item_id + '_' + upgrade_id).effect('highlight', { color: '#f7f493' }, 1250);
-				$('#upsell_div_' + item_id + '_' + upgrade_id).remove();
+				if (data == 'ok') {
+					$('#p_upgrade_option_' + item_id + '_' + upgrade_id).removeClass('upgrade-option-callout');
+					$('#p_upgrade_option_' + item_id + '_' + upgrade_id).html($('#item_' + item_id + '_' + upgrade_id + '_' + upgrades[item_id][upgrade_id]['selected']).data('upgrade-text'));
+					$('#p_upgrade_option_' + item_id + '_' + upgrade_id).effect('highlight', { color: '#f7f493' }, 1250);
+					$('#upsell_div_' + item_id + '_' + upgrade_id).remove();
+				} else {
+					alert(data);
+				}
 			},
 			error: function(data) {
 				alert('There was a problem saving your change, please try again.');

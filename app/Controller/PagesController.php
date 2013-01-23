@@ -25,7 +25,7 @@ class PagesController extends AppController
 {
 	public $name = 'Pages';
 	
-	public $uses = array('UberApi', 'UberServicePlan', 'Cart', 'CartItem', 'CartItemUpgrade', 'CartItemHostname', 'Utilities', 'Msas', 'SavedRack', 'SavedCartItem', 'SavedCartItemHostname', 'SavedCartItemUpgrade', 'SavedCart');
+	public $uses = array('UberApi', 'UberServicePlan', 'Cart', 'CartItem', 'CartItemUpgrade', 'CartItemHostname', 'Utilities');
 	
 	public $components = array('Session', 'UbersmithCart', 'SWFTool');
 	

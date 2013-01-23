@@ -42,6 +42,22 @@ class AjaxController extends AppController
 	public function update($what)
 	{
 		switch ($what) {
+			case 'item':
+				if (empty($_REQUEST['item_id']) || empty($_REQUEST['upgrades'])) {
+					return;
+				}
+				
+				try {
+					$this->UbersmithCart->update_item($_REQUEST);
+				} catch (UberException $e) {
+					echo $e->getMessage();
+					exit;
+				}
+				
+				echo 'ok';
+				exit;
+				
+				break;
 			case 'quantity':
 				if (empty($_REQUEST['quantity']) || empty($_REQUEST['item_id'])) {
 					return;
