@@ -11,22 +11,40 @@ Features
 * Supports monthly service plans with setup fees
 * Supports coupons for discounts
 * Master Services Agreement signage before placing order
-* Integrated with Twilio for fraud verification
-* Integrated with Google Analytics for tracking and statistics
+* Integrated with Twilio for fraud verification (optional)
+* Integrated with Google Analytics for tracking and statistics (optional)
 * Supports CDN delivery of static assets
-* Translatable strings passed through i18n functions
+* Strings passed through i18n functions, ready for translation
 * Built on top of CakePHP 2.2
 
 Setup
 -----
 
-1. Clone the repository onto the server that will be housing the order forms
+This has been tested on a LAMP stack running PHP 5.3+, MySQL 5+, Apache 2+, and CentOS. It should work on your favorite flavor or Linux and should be fine behind Nginx or another web server. It may even work with MySQL <5. The only hard requirement is PHP 5.3+.
+
+To get started:
+
+1. Clone the repository onto the server that will be housing the order forms:
 
 	git clone https://github.com/TeamUbersmith/order-forms.git
+	cd order-forms
+	chmod -R 0777 app/tmp/
 
-2. Copy
+2. After setting up a MySQL database, import the SQL dump file, and then remove it
 
-Create your virtual hosts file for 80 and 443:
+	mysql -u user -p database < dump.sql
+	rm dump.sql
+
+3. Copy the sample config files into their final resting place
+
+	cp app/Config/database.php.sample app/Config/database.php
+	cp app/Config/core.php.sample app/Config/core.php
+
+4. Edit app/Config/database.php with your connection details
+
+5. Edit app/Config/core.php with your preferences (relavant config is near the bottom of file)
+
+6. Create your virtual hosts file for ports 80 and 443 (tweak for Nginx or other):
 
 	<VirtualHost _default_:80>
 	  ServerName order-forms.yourdomain.com
@@ -51,4 +69,4 @@ Create your virtual hosts file for 80 and 443:
 	  SSLCertificateKeyFile /path/to/server.key
 	</VirtualHost>
 
-
+7. Restart Apache, and visit http://order-forms.yourdomain.com
