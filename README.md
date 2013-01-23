@@ -46,27 +46,27 @@ To get started:
 
 6. Create your virtual hosts file for ports 80 and 443 (tweak for Nginx or other):
 
-	<VirtualHost _default_:80>
-	  ServerName order-forms.yourdomain.com
-	  DocumentRoot /var/www/order-forms
-	  <Directory /var/www/order-forms>
-	    AllowOverride All
-	    Order allow,deny
-	    Allow from all
-	  </Directory>
-	</VirtualHost>
-	
-	<VirtualHost _default_:443>
-	  ServerName order-forms.yourdomain.com
-	  DocumentRoot /var/www/order-forms
-	  <Directory /var/www/order-forms>
-	    AllowOverride All
-	    Order allow,deny
-	    Allow from all
-	  </Directory>
-	  SSLEngine on
-	  SSLCertificateFile /path/to/server.crt
-	  SSLCertificateKeyFile /path/to/server.key
-	</VirtualHost>
+		<VirtualHost _default_:80>
+			ServerName order-forms.yourdomain.com
+			DocumentRoot /var/www/order-forms
+			<Directory /var/www/order-forms>
+				AllowOverride All
+				Order allow,deny
+				Allow from all
+			</Directory>
+		</VirtualHost>
+		
+		<VirtualHost _default_:443>
+			ServerName order-forms.yourdomain.com
+			DocumentRoot /var/www/order-forms
+			<Directory /var/www/order-forms>
+				AllowOverride All
+				Order allow,deny
+				Allow from all
+			</Directory>
+			SSLEngine on
+			SSLCertificateFile /path/to/server.crt
+			SSLCertificateKeyFile /path/to/server.key
+		</VirtualHost>
 
-7. Restart Apache, and visit http://order-forms.yourdomain.com
+7. Restart Apache, and then visit http://order-forms.yourdomain.com
