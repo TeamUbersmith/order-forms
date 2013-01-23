@@ -1,6 +1,6 @@
 <div class="header page-header grid_21 prefix_3 alpha omega">
 	<div class="header-logo">
-		<h2 class="register">Configure</h2>
+		<h2 class="register"><?php echo __('Configure'); ?></h2>
 	</div>
 </div>
 <br clear="all" />
@@ -108,29 +108,29 @@
 												// monthly price
 												if (($upgrade_option->monthly_price - $upgrade_option->monthly_price_discount_amount) >= ($upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price - $upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price_discount_amount)) {
 													$has_monthly_price = true;
-													echo '$' . number_format($upgrade_option->monthly_price - ($upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price - $upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price_discount_amount), 2) . '/mo';
+													echo '$' . number_format($upgrade_option->monthly_price - ($upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price - $upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price_discount_amount), 2) . '/' . __('mo');
 													if ($upgrade_option->monthly_price_discount_amount > 0) {
 														if ($upgrade_option->monthly_price_discount_amount == $upgrade_option->monthly_price_recurring_discount_amount) {
-															echo ' - $' . number_format($upgrade_option->monthly_price_discount_amount, 2) . '/mo discount = <span class="discount">$' . number_format($upgrade_option->monthly_price - ($upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price - $upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price_discount_amount) - $upgrade_option->monthly_price_discount_amount, 2) . '/mo</span>';
+															echo ' - $' . number_format($upgrade_option->monthly_price_discount_amount, 2) . '/' . __('mo discount','month discount') . ' = <span class="discount">$' . number_format($upgrade_option->monthly_price - ($upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price - $upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price_discount_amount) - $upgrade_option->monthly_price_discount_amount, 2) . '/' . __('mo') . '</span>';
 														}
 														else {
 															if ($upgrade_option->monthly_price_one_time_discount_amount > 0) {
 																echo ' - $' . number_format($upgrade_option->monthly_price_one_time_discount_amount, 2);
 															}
 															if ($upgrade_option->monthly_price_recurring_discount_amount > 0) {
-																echo ' - $' . number_format($upgrade_option->monthly_price_recurring_discount_amount, 2) . '/mo discount';
+																echo ' - $' . number_format($upgrade_option->monthly_price_recurring_discount_amount, 2) . '/' . __('mo discount','month discount');
 															}
 															echo ' = <span class="discount">';
 															if ($upgrade_option->monthly_price_one_time_discount_amount > 0) {
-																echo '$' . number_format($upgrade_option->monthly_price - ($upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price - $upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price_one_time_discount_amount) - $upgrade_option->monthly_price_one_time_discount_amount, 2) . ' first month; ';
+																echo '$' . number_format($upgrade_option->monthly_price - ($upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price - $upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price_one_time_discount_amount) - $upgrade_option->monthly_price_one_time_discount_amount, 2) . ' ' . __('first month') . '; ';
 															}
-															echo ' $' . number_format($upgrade_option->monthly_price - ($upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price - $upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price_recurring_discount_amount) - $upgrade_option->monthly_price_recurring_discount_amount, 2) . '/mo</span>';
+															echo ' $' . number_format($upgrade_option->monthly_price - ($upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price - $upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price_recurring_discount_amount) - $upgrade_option->monthly_price_recurring_discount_amount, 2) . '/' . __('mo') . '</span>';
 														}
 													}
 												}
 												elseif (($upgrade_option->monthly_price - $upgrade_option->monthly_price_discount_amount) < ($upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price - $upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price_discount_amount)) {
 													$has_monthly_price = true;
-													echo ' - $' . number_format(($upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price - $upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price_discount_amount) - ($upgrade_option->monthly_price - $upgrade_option->monthly_price_discount_amount), 2) . '/mo';
+													echo ' - $' . number_format(($upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price - $upgrade->options[$upgrade->default_upgrade_option_id]->monthly_price_discount_amount) - ($upgrade_option->monthly_price - $upgrade_option->monthly_price_discount_amount), 2) . '/' . __('mo');
 												}
 												// setup fee
 												if (($upgrade_option->setup_fee - $upgrade_option->setup_fee_discount_amount) > ($upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee - $upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee_discount_amount)) {
@@ -139,26 +139,26 @@
 														echo ' + ';
 													}
 													if ($upgrade_option->setup_fee_discount_amount > 0) {
-														echo '<span class="discount">$' . number_format(($upgrade_option->setup_fee - $upgrade_option->setup_fee_discount_amount) - ($upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee - $upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee_discount_amount), 2) . ' setup</span>';
+														echo '<span class="discount">$' . number_format(($upgrade_option->setup_fee - $upgrade_option->setup_fee_discount_amount) - ($upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee - $upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee_discount_amount), 2) . ' ' . __('setup') . '</span>';
 													}
 													else {
-														echo '$' . number_format(($upgrade_option->setup_fee - $upgrade_option->setup_fee_discount_amount) - ($upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee - $upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee_discount_amount), 2) . ' setup';
+														echo '$' . number_format(($upgrade_option->setup_fee - $upgrade_option->setup_fee_discount_amount) - ($upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee - $upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee_discount_amount), 2) . ' ' . __('setup');
 													}
 												}
 												elseif (($upgrade_option->setup_fee - $upgrade_option->setup_fee_discount_amount) < ($upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee - $upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee_discount_amount)) {
 													$has_setup_fee = true;
 													if (!empty($upgrade_option->setup_fee_discount_amount)) {
-														echo ' - $' . number_format(($upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee - $upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee_discount_amount) - ($upgrade_option->setup_fee - $upgrade_option->setup_fee_discount_amount), 2) . ' setup';
+														echo ' - $' . number_format(($upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee - $upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee_discount_amount) - ($upgrade_option->setup_fee - $upgrade_option->setup_fee_discount_amount), 2) . ' ' . __('setup');
 													}
 													else {
-														echo ' - $' . number_format(($upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee - $upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee_discount_amount) - ($upgrade_option->setup_fee - $upgrade_option->setup_fee_discount_amount), 2) . ' setup';
+														echo ' - $' . number_format(($upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee - $upgrade->options[$upgrade->default_upgrade_option_id]->setup_fee_discount_amount) - ($upgrade_option->setup_fee - $upgrade_option->setup_fee_discount_amount), 2) . ' ' . __('setup');
 													}
 												}
 												echo ')</span>';
 												
 											?>
 											<?php else: ?>
-												<span class="upgrade_option_language" id="upgrade_option_language_<?php echo $upgrade_id; ?>_<?php echo $upgrade_option_id; ?>">(Included in price)</span>
+												<span class="upgrade_option_language" id="upgrade_option_language_<?php echo $upgrade_id; ?>_<?php echo $upgrade_option_id; ?>">(<?php echo __('Included in price'); ?>)</span>
 											<?php endif ?>
 										</label>
 									</div>
@@ -173,9 +173,9 @@
 				endforeach; // upgrades
 				?>
 				<?php if (($i + 1) == count($upgrade_groups)) : ?>
-					<div class="tab-next"><button class="tab-next button_add" onmouseup="$('#configure_form').submit();">Next &raquo;</button></div>
+					<div class="tab-next"><button class="tab-next button_add" onmouseup="$('#configure_form').submit();"><?php echo __('Next'); ?> &raquo;</button></div>
 				<?php else : ?>
-					<div class="tab-next"><button class="tab-next button_add" onmouseup="go_to_tab(<?php echo ($i + 1); ?>);">Next &raquo;</button></div>
+					<div class="tab-next"><button class="tab-next button_add" onmouseup="go_to_tab(<?php echo ($i + 1); ?>);"><?php echo __('Next'); ?> &raquo;</button></div>
 				<?php endif; ?>
 			</div>
 			<!-- end box -->
@@ -187,7 +187,7 @@
 	<div class="next-step grid_5 prefix_1 omega">
 		<div class="continue summary">
 			<div class="summary-header">
-				<h3>Your Summary</h3>
+				<h3><?php echo __('Your Summary'); ?></h3>
 			</div>
 			<input type="hidden" id="monthly_recurring_subtotal_value" value="<?php echo empty($monthly_price_recurring_discount_amount) ? $monthly_price : $monthly_price - $monthly_price_recurring_discount_amount; ?>" />
 			<input type="hidden" id="monthly_one_time_subtotal_value" value="<?php echo empty($monthly_price_one_time_discount_amount) ? $monthly_price : $monthly_price - $monthly_price_one_time_discount_amount; ?>" />
@@ -196,28 +196,28 @@
 				<div id="monthly-price">
 					<?php if ($monthly_price_recurring_discount_amount == $monthly_price_one_time_discount_amount) : ?>
 						<span id="first_month_discount" class="discount" style="display: none;">$<span id="monthly_one_time_subtotal"><?php echo number_format(empty($monthly_price_one_time_discount_amount) ? $monthly_price : $monthly_price - $monthly_price_one_time_discount_amount, 2); ?></span></span>
-						<span id="first_month_monthly" class="monthly" style="display: none;">USD first Month</span>
+						<span id="first_month_monthly" class="monthly" style="display: none;"><?php echo __('%s first Month', 'USD'); ?></span>
 						<span class="<?php echo ($monthly_price_recurring_discount_amount > 0) ? 'discount ' : ''; ?>">$<span id="monthly_recurring_subtotal"><?php echo number_format(empty($monthly_price_one_time_discount_amount) ? $monthly_price : $monthly_price - $monthly_price_one_time_discount_amount, 2); ?></span></span>
-						<span class="monthly monthly_recurring">USD per Month</span>
+						<span class="monthly monthly_recurring"><?php echo __('%s per Month', 'USD'); ?></span>
 					<?php else: ?>
 						<span id="first_month_discount" class="discount">$<span id="monthly_one_time_subtotal"><?php echo number_format(empty($monthly_price_one_time_discount_amount) ? $monthly_price : $monthly_price - $monthly_price_one_time_discount_amount, 2); ?></span></span>
-						<span id="first_month_monthly" class="monthly">USD first Month</span>
+						<span id="first_month_monthly" class="monthly"><?php echo __('%s first Month', 'USD'); ?></span>
 						<span class="<?php echo ($monthly_price_recurring_discount_amount > 0) ? 'discount ' : ''; ?>monthly_recurring_header">$<span id="monthly_recurring_subtotal"><?php echo number_format(empty($monthly_price_recurring_discount_amount) ? $monthly_price : $monthly_price - $monthly_price_recurring_discount_amount, 2); ?></span></span>
-						<span class="monthly monthly_recurring">USD per Month</span>
+						<span class="monthly monthly_recurring"><?php echo __('%s per Month', 'USD'); ?></span>
 					<?php endif; ?>
 				</div>
 				<div id="setup-fee">
 					<?php if (empty($setup_fee_discount_amount)) : ?>
-						$<span id="setup_fee_subtotal"><?php echo number_format($setup_fee, 2); ?></span> USD Setup
+						$<span id="setup_fee_subtotal"><?php echo number_format($setup_fee, 2); ?></span> USD <?php echo __('Setup'); ?>
 					<?php else: ?>
-						<span class="discount">Discounted<br />$<span id="setup_fee_subtotal"><?php echo number_format($setup_fee - $setup_fee_discount_amount, 2); ?></span> USD Setup</span>
+						<span class="discount"><?php echo __('Discounted'); ?><br />$<span id="setup_fee_subtotal"><?php echo number_format($setup_fee - $setup_fee_discount_amount, 2); ?></span> USD <?php echo __('Setup'); ?></span>
 					<?php endif; ?>
 				</div>
 				<input type="submit" class="default_button" value="<?php echo (!empty($cart_item_id)) ? __('Update Item') : __('Add to Cart'); ?>" />
 			</div>
 			<div class="summary-config">
-				<h4>Your Configuration</h4>
-				<div class="config-item clearfix"><span class="name">Base Price</span><span class="price">$<?php echo number_format($monthly_price_base, 2); ?></span></div>
+				<h4><?php echo __('Your Configuration'); ?></h4>
+				<div class="config-item clearfix"><span class="name"><?php echo __('Base Price'); ?></span><span class="price">$<?php echo number_format($monthly_price_base, 2); ?></span></div>
 				<?php if (!empty($monthly_base_price_one_time_discount)) : ?>
 					<div class="config-item clearfix"><span class="name"></span><span class="price discount">-$<?php echo number_format($monthly_base_price_one_time_discount, 2); ?></span></div>
 				<?php endif; ?>

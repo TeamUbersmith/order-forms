@@ -1,39 +1,54 @@
-CakePHP
-=======
+Order Forms
+===========
 
-[![CakePHP](http://cakephp.org/img/cake-logo.png)](http://www.cakephp.org)
+These online order forms give Ubersmith clients the ability to sell their services easily via their website.
 
-CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC.
-Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.
+Features
+--------
 
-Some Handy Links
-----------------
+* Feature-rich order checkout process for customers
+* Orders are submitted directly to a configurable Order Manager queue
+* Supports monthly service plans with setup fees
+* Supports coupons for discounts
+* Master Services Agreement signage before placing order
+* Integrated with Twilio for fraud verification
+* Integrated with Google Analytics for tracking and statistics
+* Supports CDN delivery of static assets
+* Translatable strings passed through i18n functions
+* Built on top of CakePHP 2.2
 
-[CakePHP](http://www.cakephp.org) - The rapid development PHP framework
+Setup
+-----
 
-[Cookbook](http://book.cakephp.org) - THE Cake user documentation; start learning here!
+1. Clone the repository onto the server that will be housing the order forms
 
-[Plugins](http://plugins.cakephp.org/) - A repository of extensions to the framework
+	git clone https://github.com/TeamUbersmith/order-forms.git
 
-[The Bakery](http://bakery.cakephp.org) - Tips, tutorials and articles
+2. Copy
 
-[API](http://api.cakephp.org) - A reference to Cake's classes
+Create your virtual hosts file for 80 and 443:
 
-[CakePHP TV](http://tv.cakephp.org) - Screen casts from events and video tutorials
+	<VirtualHost _default_:80>
+	  ServerName order-forms.yourdomain.com
+	  DocumentRoot /var/www/order-forms
+	  <Directory /var/www/order-forms>
+	    AllowOverride All
+	    Order allow,deny
+	    Allow from all
+	  </Directory>
+	</VirtualHost>
+	
+	<VirtualHost _default_:443>
+	  ServerName order-forms.yourdomain.com
+	  DocumentRoot /var/www/order-forms
+	  <Directory /var/www/order-forms>
+	    AllowOverride All
+	    Order allow,deny
+	    Allow from all
+	  </Directory>
+	  SSLEngine on
+	  SSLCertificateFile /path/to/server.crt
+	  SSLCertificateKeyFile /path/to/server.key
+	</VirtualHost>
 
-[The Cake Software Foundation](http://cakefoundation.org/) - promoting development related to CakePHP
 
-Get Support!
-------------
-
-[Our Google Group](http://groups.google.com/group/cake-php) - community mailing list and forum
-
-[#cakephp](http://webchat.freenode.net/?channels=#cakephp) on irc.freenode.net - Come chat with us, we have cake.
-
-[Q & A](http://ask.cakephp.org/) - Ask questions here, all questions welcome
-
-[Lighthouse](http://cakephp.lighthouseapp.com/) - Got issues? Please tell us!
-
-[![Bake Status](https://secure.travis-ci.org/cakephp/cakephp.png?branch=master)](http://travis-ci.org/cakephp/cakephp)
-
-![Cake Power](https://raw.github.com/cakephp/cakephp/master/lib/Cake/Console/Templates/skel/webroot/img/cake.power.gif)

@@ -51,6 +51,8 @@ class PagesController extends AppController
 			case 'download':
 				$this->download_msa();
 				break;
+			default:
+				throw new NotFoundException(__('Can only view or download the %s', 'MSA'));
 		}
 	}
 	

@@ -30,13 +30,6 @@ class CartItem extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'ServicePlan' => array(
-			'className' => 'ServicePlan',
-			'foreignKey' => 'service_plan_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		)
 	);
 }

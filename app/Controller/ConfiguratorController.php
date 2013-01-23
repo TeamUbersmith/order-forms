@@ -1991,7 +1991,7 @@ class ConfiguratorController extends AppController
 				$cc_billing_fields = array(
 					'cc_first'   => __('First Name'),
 					'cc_last'    => __('Last Name'),
-					'cc_address' => __('Address',
+					'cc_address' => __('Address'),
 					'cc_city'    => __('City'),
 					'cc_zip'     => __('Postal Code'),
 					'cc_phone'   => __('Phone Number'),
@@ -2170,7 +2170,10 @@ class ConfiguratorController extends AppController
 		}
 		
 		if (!empty($pdf_data->data->active)) {
-			$this->set('has_active_client_msa', true);
+			$this->set(array(
+				'has_active_client_msa' => true,
+				'uber_has_msa'          => true,
+			));
 			$this->Session->write('has_active_client_msa', true);
 		}
 		else {
@@ -2180,12 +2183,14 @@ class ConfiguratorController extends AppController
 			);
 			$pdf_data = $this->UberApi->call_api($args);
 			
-			$this->Msas->create();
-			$this->Msas->set('cake_session_id', $this->Session->id());
-			$this->Msas->set('uber_msa_id', $pdf_data->data->msa_id);
-			$this->Msas->save();
-			
-			$this->Session->write('msa_id', $this->Msas->id);
+			// ubersmith hasn't been configured with MSA at all
+			if (empty($pdf_data->data->active)) {
+				$this->set('uber_has_msa', false);
+				$this->Session->write('uber_msa_id', false);
+			} else {
+				$this->set('uber_has_msa', true);
+				$this->Session->write('uber_msa_id', $pdf_data->data->msa_id);
+			}
 		}
 		
 		$this->set('navigation_summary', $this->UbersmithCart->navigation_summary());
@@ -2211,6 +2216,7 @@ class ConfiguratorController extends AppController
 		$new_client_info = $this->Session->read('new_client_info');
 		$client_info = $this->Session->read('client_info');
 		$new_card_info = $this->Session->read('new_card_info');
+		$uber_msa_id = $this->Session->read('uber_msa_id');
 		$agreed_to_msa = $this->Session->read('agreed_to_msa');
 		
 		if (empty($uber_client) && empty($session_cart) && empty($client_info)) {
@@ -2224,7 +2230,7 @@ class ConfiguratorController extends AppController
 			$this->Session->setFlash('Please select a valid payment method', 'default', array('class' => 'error'));
 			$this->redirect(array('controller' => 'configurator', 'action' => 'configure', 'payment-method'));
 		}
-		else if (empty($agreed_to_msa) && empty($_POST)) {
+		else if (empty($agreed_to_msa) && $uber_msa_id != false && empty($_POST)) {
 			$this->Session->setFlash('Please accept the Master Services Agreement', 'default', array('class' => 'error'));
 			$this->redirect(array('controller' => 'configurator', 'action' => 'configure', 'order-review'));
 		}
@@ -2244,9 +2250,9 @@ class ConfiguratorController extends AppController
 			}
 			else {
 				$active_msa = $this->Session->read('has_active_client_msa');
-				if (empty($active_msa)) {
-					$msa = $this->Msas->read(null, $this->Session->read('msa_id'));
-					$args['info']['msa']['msa_id'] = $msa['Msas']['uber_msa_id'];
+				$uber_msa_id = $this->Session->read('uber_msa_id');
+				if (empty($active_msa) && $uber_msa_id) {
+					$args['info']['msa']['msa_id'] = $uber_msa_id;
 				}
 			}
 			
