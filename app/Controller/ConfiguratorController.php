@@ -121,8 +121,7 @@ class ConfiguratorController extends AppController
 			$service_plan_id = $cart_item['service_plan_id'];
 			
 			if (!in_array($service_plan_id, $this->UbersmithCart->service_plans())) {
-				// TODO: we're not selling this anymore - need to display better error
-				$this->cakeError('error404');
+				continue;
 			}
 			
 			$service_plan_api_array = array(
@@ -134,8 +133,7 @@ class ConfiguratorController extends AppController
 				$service_plan = $uber_service_plan->data;
 			}
 			else {
-				// TODO: we're not selling this anymore - need to display better error
-				$this->cakeError('error404');
+				continue;
 			}
 			
 			$item->id = $cart_item['id'];
@@ -1071,7 +1069,8 @@ class ConfiguratorController extends AppController
 		
 		if (!empty($_POST)) {
 			if (!in_array($this->service_plan_id, $this->UbersmithCart->service_plans())) {
-				$this->cakeError('error404');
+				$this->Session->setFlash(__('This item is not currently being sold. Please try again.'), 'default', array('class' => 'error'));
+				$this->redirect(array('controller' => 'pages', 'action' => 'index'));
 			}
 			
 			$service_plan_api_array = array(
@@ -1082,7 +1081,8 @@ class ConfiguratorController extends AppController
 			if (empty($uber_service_plan->error_code)) {
 				$service_plan = $uber_service_plan->data;
 			} else {
-				$this->cakeError('error404');
+				$this->Session->setFlash(__('This item is not currently being sold. Please try again.'), 'default', array('class' => 'error'));
+				$this->redirect(array('controller' => 'pages', 'action' => 'index'))
 			}
 				
 			if (empty($session_cart)) {
@@ -1131,7 +1131,7 @@ class ConfiguratorController extends AppController
 		
 		if (!empty($errors)) {
 			$this->Session->setFlash(implode('<br />', $errors), 'default', array('class' => 'error'));
-			$this->redirect(array('controller' => 'configurator', 'action' => 'configure', 1, '?' => array('spid' => $this->service_plan_id)));
+			$this->redirect(array('controller' => 'configurator', 'action' => 'configure', 1, $this->service_plan_id));
 		}
 		else if (!empty($_POST)) {
 			if (!empty($this->cart_item_id)) {
@@ -1176,7 +1176,7 @@ class ConfiguratorController extends AppController
 				}
 				else {
 					$this->Session->setFlash(__('Please add an item to your cart'), 'default', array('class' => 'error'));
-					$this->redirect(array('controller' => 'configurator', 'action' => 'configure', 1, '?' => array('spid' => $this->service_plan_id)));
+					$this->redirect(array('controller' => 'configurator', 'action' => 'configure', 1, $this->service_plan_id));
 				}
 			}
 		}
@@ -1246,7 +1246,7 @@ class ConfiguratorController extends AppController
 				$this->redirect(array('controller' => 'pages', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('Please add an item to your cart'), 'default', array('class' => 'error'));
-				$this->redirect(array('controller' => 'configurator', 'action' => 'configure', 1, '?' => array('spid' => $this->service_plan_id)));
+				$this->redirect(array('controller' => 'configurator', 'action' => 'configure', 1, $this->service_plan_id));
 			}
 		} else {
 			$cart = $this->Cart->read(null, $session_cart['Cart']['id']);
@@ -1256,7 +1256,7 @@ class ConfiguratorController extends AppController
 					$this->redirect(array('controller' => 'pages', 'action' => 'index'));
 				} else {
 					$this->Session->setFlash(__('Please add an item to your cart'), 'default', array('class' => 'error'));
-					$this->redirect(array('controller' => 'configurator', 'action' => 'configure', 1, '?' => array('spid' => $this->service_plan_id)));
+					$this->redirect(array('controller' => 'configurator', 'action' => 'configure', 1, $this->service_plan_id));
 				}
 			} else if (empty($_POST)) {
 				// make sure we have proper hostnames
