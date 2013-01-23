@@ -240,6 +240,33 @@ class UbersmithCartComponent extends Component
 		return false;
 	}
 	
+	public function remove_item($request = array())
+	{
+		if (empty($request['item_id'])) {
+			throw new UberException(__('Invalid item id specified'), 1);
+		}
+		
+		if (!$this->is_in_cart($request)) {
+			throw new UberException(__('Item is not in cart'), 2);
+		}
+		
+		$deleted = false;
+		foreach ($this->cart['CartItem'] as $cart_item_id => $cart_item) {
+			if ($cart_item['id'] != $request['item_id']) {
+				continue;
+			}
+			if ($this->controller->CartItem->delete($request['item_id'])) {
+				$deleted = true;
+			}
+		}
+		
+		if (!$deleted) {
+			throw new UberException(__('There was an issue deleting the item from the cart'), 3);
+		}
+		
+		return true;
+	}
+	
 	public function update_item($request = array())
 	{
 		if (empty($request['item_id']) || empty($request['upgrades'])) {
@@ -313,7 +340,7 @@ class UbersmithCartComponent extends Component
 			return false;
 		}
 		
-		if (!$this->is_in_cart($this->cart, $request['item_id'])) {
+		if (!$this->is_in_cart($request)) {
 			return false;
 		}
 		
@@ -332,7 +359,7 @@ class UbersmithCartComponent extends Component
 			return false;
 		}
 		
-		if (!$this->is_in_cart($this->cart, $request['item_id'])) {
+		if (!$this->is_in_cart($request)) {
 			return false;
 		}
 		

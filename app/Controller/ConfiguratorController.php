@@ -42,27 +42,6 @@ class ConfiguratorController extends AppController
 		$this->layout = 'default';
 	}
 	
-	public function ajax($step = 0)
-	{
-		switch ($step) {
-			case 1:
-				break;
-			case 2:
-				$this->ajax_step_two($service_plan_id, $cart_item);
-				break;
-			case 3:
-				break;
-			case 4:
-				break;
-			case 5:
-				break;
-			case 6:
-				break;
-			default:
-				$this->cakeError('error404');
-		}
-	}
-	
 	public function logout()
 	{
 		$this->Session->destroy();
@@ -272,8 +251,7 @@ class ConfiguratorController extends AppController
 			$service_plan_id = $cart_item['service_plan_id'];
 			
 			if (!in_array($service_plan_id, $this->UbersmithCart->service_plans())) {
-				// TODO: we're not selling this anymore - need to display better error
-				$this->cakeError('error404');
+				throw new NotFoundException(__('Service plan not valid'));
 			}
 			
 			$service_plan_api_array = array(
@@ -285,8 +263,7 @@ class ConfiguratorController extends AppController
 				$service_plan = $uber_service_plan->data;
 			}
 			else {
-				// TODO: we're not selling this anymore - need to display better error
-				$this->cakeError('error404');
+				throw new NotFoundException(__('Service plan not valid'));
 			}
 			
 			$item->id = $cart_item['id'];
@@ -594,27 +571,14 @@ class ConfiguratorController extends AppController
 	
 	public function remove_from_cart($item_id =  0)
 	{
-		$cart = $this->Session->read('Cart');
-		
-		if (empty($cart)) {
-			$this->cakeError('error404');
+		try {
+			$this->UbersmithCart->remove_item(array('item_id' => $item_id));
+		} catch (UberException $e) {
+			throw new UberException($e->getMessage(), 1);
 		}
 		
-		// simple validation of $_GET parameter
-		$item_id = (int) $item_id;
-		
-		$cart = $this->Cart->read(null, $cart['Cart']['id']);
-		
-		foreach ($cart['CartItem'] as $cart_item_id => $cart_item) {
-			if ($cart_item['id'] == $item_id) {
-				$this->CartItem->delete($item_id);
-				$this->Session->setFlash(__('Item removed from cart'), 'default', array('class' => 'info'));
-				$this->redirect(array('controller' => 'configurator', 'action' => 'configure', 'cart'));
-			}
-		}
-		
-		// invalid item_id specified
-		$this->cakeError('error404');
+		$this->Session->setFlash(__('Item removed from cart'), 'default', array('class' => 'info'));
+		$this->redirect(array('controller' => 'configurator', 'action' => 'configure', 'cart'));
 	}
 	
 	/**

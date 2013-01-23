@@ -73,6 +73,7 @@ class AjaxController extends AppController
 				
 				// this is done behind the scenes with no user interaction, so silently apply
 				$this->UbersmithCart->update_hostname($_REQUEST);
+				
 				break;
 			case 'coupon':
 				if (empty($_REQUEST['coupon_code'])) {

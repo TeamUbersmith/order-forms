@@ -122,6 +122,7 @@ function update_hostname(elm) {
 				'hostname_id' : parseInt(elm.data('hostname-id') - 1)
 			},
 			success: function(data) {
+				console.debug(data);
 				elm.data('old-hostname', elm.val());
 			}
 		});
