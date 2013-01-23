@@ -26,9 +26,9 @@ To get started:
 
 1. Clone the repository onto the server that will be housing the order forms:
 
-	 git clone https://github.com/TeamUbersmith/order-forms.git
-	 cd order-forms
-	 chmod -R 0777 app/tmp/
+    git clone https://github.com/TeamUbersmith/order-forms.git
+    cd order-forms
+    chmod -R 0777 app/tmp/
 
 2. After setting up a MySQL database, import the SQL dump file, and then remove it
 
