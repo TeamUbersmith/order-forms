@@ -1060,11 +1060,6 @@ class ConfiguratorController extends AppController
 	
 	public function step_2()
 	{
-		
-		if (!empty($_GET['saved'])) {
-			$this->data['saved_rack'] = $_GET['saved'];
-		}
-		
 		$session_cart = $this->Session->read('Cart');
 		
 		if (!empty($_POST)) {
@@ -1082,7 +1077,7 @@ class ConfiguratorController extends AppController
 				$service_plan = $uber_service_plan->data;
 			} else {
 				$this->Session->setFlash(__('This item is not currently being sold. Please try again.'), 'default', array('class' => 'error'));
-				$this->redirect(array('controller' => 'pages', 'action' => 'index'))
+				$this->redirect(array('controller' => 'pages', 'action' => 'index'));
 			}
 				
 			if (empty($session_cart)) {
@@ -1342,19 +1337,15 @@ class ConfiguratorController extends AppController
 			$highlight_error_inputs = array();
 		}
 		
-		$this->set('navigation_summary', $this->UbersmithCart->navigation_summary());
-		
-		$this->set('highlight_error_inputs', $highlight_error_inputs);
-		
-		$this->set('us_states', $this->Utilities->us_states);
-		
-		$this->set('ca_provinces', $this->Utilities->ca_provinces);
-		
-		$this->set('countries', $this->Utilities->countries);
-		
-		$this->set('new_client_info', $this->Session->read('new_client_info'));
-		
-		$this->set('title_for_layout', __('Account Info'));
+		$this->set(array(
+			'navigation_summary'     => $this->UbersmithCart->navigation_summary(),
+			'highlight_error_inputs' => $highlight_error_inputs,
+			'us_states'              => $this->Utilities->us_states,
+			'ca_provinces'           => $this->Utilities->ca_provinces,
+			'countries'              => $this->Utilities->countries,
+			'new_client_info'        => $this->Session->read('new_client_info'),
+			'title_for_layout'       => __('Account Info'),
+		));
 	}
 	
 	public function step_4()
@@ -1559,12 +1550,6 @@ class ConfiguratorController extends AppController
 			$this->Session->write('client_info', $new_client_info);
 			
 			$args = array();
-			
-			$saved_rack_hash = $this->Session->read('saved_rack_hash');
-			
-			if (!empty($saved_rack_hash)) {
-				$args['info']['saved_rack_hash'] = $saved_rack_hash;
-			}
 			
 			$cart = $this->Cart->read(null, $session_cart['Cart']['id']);
 			$uber_client = $this->Session->read('uber_client');
@@ -1779,25 +1764,18 @@ class ConfiguratorController extends AppController
 			$highlight_error_inputs = array();
 		}
 		
-		$this->set('navigation_summary', $this->UbersmithCart->navigation_summary());
-		
-		$this->set('highlight_error_inputs', $highlight_error_inputs);
-		
-		$this->set('client_info', $this->Session->read('client_info'));
-		
-		$this->set('new_client_info', $this->Session->read('new_client_info'));
-		
-		$this->set('us_states', $this->Utilities->us_states);
-		
-		$this->set('ca_provinces', $this->Utilities->ca_provinces);
-		
-		$this->set('countries', $this->Utilities->countries);
-		
-		$this->set('new_card_info', $new_card_info);
-		
-		$this->set('payment_methods', $payment_methods);
-		
-		$this->set('title_for_layout', 'Payment Method');
+		$this->set(array(
+			'navigation_summary'     => $this->UbersmithCart->navigation_summary(),
+			'highlight_error_inputs' => $highlight_error_inputs,
+			'client_info'            => $this->Session->read('client_info'),
+			'new_client_info'        => $this->Session->read('new_client_info'),
+			'us_states'              => $this->Utilities->us_states,
+			'ca_provinces'           => $this->Utilities->ca_provinces,
+			'countries'              => $this->Utilities->countries,
+			'new_card_info'          => $new_card_info,
+			'payment_methods'        => $payment_methods,
+			'title_for_layout'       => __('Payment Method'),
+		));
 	}
 	
 	public function step_5()
@@ -2113,19 +2091,16 @@ class ConfiguratorController extends AppController
 			}
 		}
 		
-		$this->set('navigation_summary', $this->UbersmithCart->navigation_summary());
-		
 		$this->create_cart_review();
 		
-		$this->set('inline_msa_view', SWFToolComponent::configured());
-		
-		$this->set('highlight_error_inputs', $highlight_error_inputs);
-		
-		$this->set('client_info', $client_info);
-		
-		$this->set('payment_method', $payment_method);
-		
-		$this->set('title_for_layout', __('Order Review'));
+		$this->set(array(
+			'navigation_summary'     => $this->UbersmithCart->navigation_summary(),
+			'inline_msa_view'        => SWFToolComponent::configured(),
+			'highlight_error_inputs' => $highlight_error_inputs,
+			'client_info'            => $client_info,
+			'payment_method'         => $payment_method,
+			'title_for_layout'       => __('Order Review'),
+		));
 	}
 	
 	public function step_6()
@@ -2422,7 +2397,7 @@ class ConfiguratorController extends AppController
 		}
 		
 		if (!empty($uber_client)) {
-			$this->set('is_existing_client', true);
+			$this->set(array('is_existing_client', true);
 			$this->set('client_id', $uber_client->client_id);
 		}
 		else {
@@ -2435,17 +2410,13 @@ class ConfiguratorController extends AppController
 			$this->set('client_id', $order->data->client_id);
 		}
 		
-		$this->set('ubersmith_url', $this->UberApi->url);
-		
-		$this->set('navigation_summary', $this->UbersmithCart->navigation_summary());
-		
-		$this->set('google_analytics_extras', $google_analytics_extras);
-		
-		$this->set('title_for_layout', __('Order Complete'));
-		
-		$this->set('order_id', $order_id);
-		
-		$this->set('hash', $hash);
+		$this->set(array(
+			'navigation_summary'      => $this->UbersmithCart->navigation_summary(),
+			'google_analytics_extras' => $google_analytics_extras,
+			'order_id'                => $order_id,
+			'hash'                    => $hash,
+			'title_for_layout'        => __('Order Complete'),
+		));
 	}
 	
 	public function us_to_international_number($number = '')
