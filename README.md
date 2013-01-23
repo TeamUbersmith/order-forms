@@ -40,9 +40,9 @@ To get started:
 		cp app/Config/database.php.sample app/Config/database.php
 		cp app/Config/core.php.sample app/Config/core.php
 
-4. Edit app/Config/database.php with your connection details
+4. Edit `app/Config/database.php` with your connection details
 
-5. Edit app/Config/core.php with your preferences (relavant config is near the bottom of file)
+5. Edit `app/Config/core.php with` your preferences (relavant config is near the bottom of file)
 
 6. Create your virtual hosts file for ports 80 and 443 (tweak for Nginx or other):
 
