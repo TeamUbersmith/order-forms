@@ -26,19 +26,19 @@ To get started:
 
 1. Clone the repository onto the server that will be housing the order forms:
 
-	git clone https://github.com/TeamUbersmith/order-forms.git
-	cd order-forms
-	chmod -R 0777 app/tmp/
+	 git clone https://github.com/TeamUbersmith/order-forms.git
+	 cd order-forms
+	 chmod -R 0777 app/tmp/
 
 2. After setting up a MySQL database, import the SQL dump file, and then remove it
 
-	mysql -u user -p database < dump.sql
-	rm dump.sql
+	 mysql -u user -p database < dump.sql
+	 rm dump.sql
 
 3. Copy the sample config files into their final resting place
 
-	cp app/Config/database.php.sample app/Config/database.php
-	cp app/Config/core.php.sample app/Config/core.php
+	 cp app/Config/database.php.sample app/Config/database.php
+	 cp app/Config/core.php.sample app/Config/core.php
 
 4. Edit app/Config/database.php with your connection details
 
