@@ -583,7 +583,7 @@ class ConfiguratorController extends AppController
 	 * Perform luhn cc validation, as per http://en.wikipedia.org/wiki/Luhn_algorithm
 	 * @author Nathan Goulding <ngoulding@ubersmith.com>
 	 */
-	public function validate_credit_card_luhn(string $number)
+	public function validate_credit_card_luhn($number)
 	{
 		// turn our string into a proper array
 		$number = str_split($number);
@@ -1603,7 +1603,6 @@ class ConfiguratorController extends AppController
 			
 			$args['info']['first'] = $new_client_info['first_name'];
 			$args['info']['last'] = $new_client_info['last_name'];
-			$args['info']['uber_login'] = $new_client_info['login'];
 			$args['info']['email'] = $new_client_info['email'];
 			$args['info']['uber_pass'] = $new_client_info['password'];
 			$args['info']['ip_address'] = $_SERVER['REMOTE_ADDR'];
@@ -1980,7 +1979,7 @@ class ConfiguratorController extends AppController
 				
 				if (empty($errors)) {
 					$payment_method = new stdClass;
-					$payment_method->type = 'cc';
+					$payment_method->payment_type = 'cc';
 					$payment_method->text = substr($new_card_info['cc_num'], -4);
 					$payment_method->full_name = $new_card_info['cc_first'] . ' ' . $new_card_info['cc_last'];
 					$payment_method->account_type = $this->get_credit_card_type($new_card_info['cc_num']);
