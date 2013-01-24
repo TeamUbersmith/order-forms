@@ -2397,7 +2397,7 @@ class ConfiguratorController extends AppController
 		}
 		
 		if (!empty($uber_client)) {
-			$this->set(array('is_existing_client', true);
+			$this->set('is_existing_client', true);
 			$this->set('client_id', $uber_client->client_id);
 		}
 		else {

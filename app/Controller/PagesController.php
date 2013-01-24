@@ -33,10 +33,23 @@ class PagesController extends AppController
 	
 	public function index()
 	{
+		$service_plans = array();
+		foreach ($this->UbersmithCart->service_plans() as $service_plan_id) {
+			$service_plan_api_array = array(
+				'method' => 'uber.service_plan_get',
+				'plan_id' => $service_plan_id,
+			);
+			$uber_service_plan = $this->UberApi->call_api($service_plan_api_array);
+			if (!empty($uber_service_plan->error_code)) {
+				continue;
+			}
+			$service_plans[$service_plan_id] = $uber_service_plan->data;
+		}
+		
 		$this->set(array(
 			'navigation_summary' => $this->UbersmithCart->navigation_summary(),
 			'title_for_layout'   => __('%s Configurator',Configure::read('Ubersmith.organization_name')),
-			'service_plans'      => $this->UbersmithCart->service_plans(),
+			'service_plans'      => $service_plans,
 		));
 		
 		$this->layout = 'default';

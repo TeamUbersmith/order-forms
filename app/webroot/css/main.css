@@ -12,10 +12,6 @@ header.configurator {
 	height: 135px;
 	margin-top: 0
 }
-
-.tab-container{
-	padding-top: 10px;
-}
 .upgrade-group{
 	background: #f7f7f7;
 	-webkit-border-radius: 2px;
@@ -705,17 +701,22 @@ a.checkout-summary:hover {
 	font-weight: 700;
 }
 
+.tab-container {
+	margin-left: 40px;
+	border-top: 1px solid #ccc;
+	padding-top: 10px;
+}
 .ui-tabs { position: relative; zoom: 1; } /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
-.ui-tabs .ui-tabs-nav { }
-.ui-tabs .ui-tabs-nav li {list-style: none; float: left; position: relative;  border-bottom: 0 !important; padding: 0; white-space: nowrap;}
+.ui-tabs .ui-tabs-nav { margin: 0px 40px; padding: 0px; }
+.ui-tabs .ui-tabs-nav li {background-color: #f9f9f9;border:1px solid #ccc; margin-right: 0px;margin-left: 10px;list-style: none; float: left; position: relative;  border-bottom: 0 !important; padding: 0; white-space: nowrap;}
 .ui-tabs .ui-tabs-nav li a {font-size: 14px;float: left; padding: .5em 1em; text-decoration: none; }
-.ui-tabs .ui-tabs-nav li.ui-tabs-selected { margin-bottom: 0; padding-bottom: 1px; }
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected {margin-bottom: 0; padding-bottom: 1px; }
 .ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; }
 .ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
 .ui-tabs .ui-tabs-panel { display: block; border-width: 0; background: none; }
 .ui-tabs .ui-tabs-hide { display: none !important; }
-.ui-tabs-selected {  }
-#tabs .ui-state-active a.tab-link { color: #223C62; }
+.ui-tabs-selected { }
+#tabs .ui-state-active a.tab-link { color: #223C62; background-color: #fff; border-bottom: 1px solid #fff; margin-bottom: -1px;}
 
 div.option_group_icon {
 	width: 70px;

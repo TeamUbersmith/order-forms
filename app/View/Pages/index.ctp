@@ -14,6 +14,9 @@
  */
 ?>
 <?php echo SessionHelper::flash(); ?>
-<?php foreach ($service_plans as $service_plan) { ?>
-<p><a href="/configure/1/<?php echo $service_plan; ?>">Configure service plan <?php echo $service_plan; ?></a></p>
-<?php } ?>
+<div class="prefix_1 grid_22 box">
+	<p>Pick a service plan to configure:</p>
+	<?php foreach ($service_plans as $service_plan_id => $service_plan) { ?>
+	<p><a href="/configure/1/<?php echo $service_plan_id; ?>"><?php echo $service_plan->title; ?></a></p>
+	<?php } ?>
+</div>

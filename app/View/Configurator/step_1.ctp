@@ -26,8 +26,7 @@
 		$i++;
 	endforeach; ?>
 	</ul>
-	<br clear="all" />
-	<div class="grid_16 prefix_1 alpha tab-container">
+	<div class="grid_16 alpha tab-container">
 		<?php
 		$i =  0;
 		foreach ($upgrade_groups as $upgrade_group_id => $upgrade_group) :
