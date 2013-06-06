@@ -47,7 +47,7 @@ To get started:
 
 5. Run the following command to install the cake_sessions table.
 
-		export CAKE_ENV={ENVIRONMENT}; Console/cake schema create sessions
+		export CAKE_ENV={ENVIRONMENT}; app/Console/cake schema create sessions
 
 6. Edit `app/Config/core.php` with your preferences (relavant config is near the bottom of file)
 
