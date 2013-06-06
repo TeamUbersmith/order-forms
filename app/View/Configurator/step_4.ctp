@@ -9,7 +9,7 @@
 	</div>
 </div>
 <br clear="all" />
-<?php echo SessionHelper::flash(); ?>
+<?php echo $this->Session->flash(); ?>
 <form action="<?php echo $this->Html->url(array('controller' => 'configurator', 'action' => 'configure', 5));?>" method="POST">
 <p class="order_summary prefix_1" style="float: left;"><?php echo __('Account Info'); ?></p>
 <div class="continue billing-info-continue billing-info-continue-top">

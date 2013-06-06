@@ -9,7 +9,7 @@
 	</div>
 </div>
 <br clear="all" />
-<?php echo SessionHelper::flash(); ?>
+<?php echo $this->Session->flash(); ?>
 <p class="order_summary prefix_1"><?php echo __('Account Info'); ?></p>
 <div class="prefix_1">
 	<label for="new_customer_radio">

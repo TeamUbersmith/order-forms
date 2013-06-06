@@ -9,7 +9,7 @@
 	</div>
 </div>
 <br clear="all" />
-<?php echo SessionHelper::flash(); ?>
+<?php echo $this->Session->flash(); ?>
 <form id="virtual_rack_form" action="<?php echo $this->Html->url(array('controller' => 'configurator', 'action' => 'configure', 3));?>" method="POST" onsubmit="return check_required();">
 <div class="prefix_1 grid_22 box">
 	<table class="prefix_1 cart-table" width="100%">

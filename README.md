@@ -21,7 +21,7 @@ Features
 Setup
 -----
 
-This has been tested on a LAMP stack running PHP 5.3+, MySQL 5+, Apache 2+, and CentOS. It should work on your favorite flavor or Linux and should be fine behind Nginx or another web server. It may even work with MySQL <5. The only hard requirement is PHP 5.3+.
+This has been tested on a LAMP stack running PHP 5.3+, MySQL 5+, Apache 2+ with mod_rewrite, and CentOS. It should work on your favorite flavor or Linux and should be fine behind Nginx or another web server. It may even work with MySQL <5. The only hard requirement is PHP 5.3+.
 
 To get started:
 
@@ -29,6 +29,8 @@ To get started:
 
 		git clone https://github.com/TeamUbersmith/order-forms.git
 		cd order-forms
+		mkdir -p app/tmp/cache
+		mkdir -p app/tmp/persistent
 		chmod -R 0777 app/tmp/
 
 2. After setting up a MySQL database, import the SQL dump file, and then remove it
@@ -41,15 +43,24 @@ To get started:
 		cp app/Config/database.php.sample app/Config/database.php
 		cp app/Config/core.php.sample app/Config/core.php
 
-4. Edit `app/Config/database.php` with your connection details
+4. Edit `app/Config/database.php` with your database connection details. Whichever array you put the connection details in - either `production` or `test` - replace `{ENVIRONMENT}` in `SetEnv {ENVIRONMENT}` with the either `production` or `test` in the virtual host file.
 
-5. Edit `app/Config/core.php` with your preferences (relavant config is near the bottom of file)
+5. Run the following command to install the cake_sessions table. If you put the database connection details in the `test` array, you do not need to export the `CAKE_ENV` variable:
 
-6. Create your virtual hosts file for ports 80 and 443 (tweak for Nginx or other):
+		Console/cake schema create sessions
+
+If you put the database connection details in the `production` array, you have to export the `CAKE_ENV` variable so the cake console can connect to the database:
+
+		export CAKE_ENV=production; Console/cake schema create sessions
+
+6. Edit `app/Config/core.php` with your preferences (relavant config is near the bottom of file)
+
+7. Create your virtual hosts file for ports 80 and 443 (tweak for Nginx or other):
 
 		<VirtualHost _default_:80>
 			ServerName order-forms.yourdomain.com
 			DocumentRoot /var/www/order-forms
+			SetEnv {ENVIRONMENT}
 			<Directory /var/www/order-forms>
 				AllowOverride All
 				Order allow,deny
@@ -60,6 +71,7 @@ To get started:
 		<VirtualHost _default_:443>
 			ServerName order-forms.yourdomain.com
 			DocumentRoot /var/www/order-forms
+			SetEnv {ENVIRONMENT}
 			<Directory /var/www/order-forms>
 				AllowOverride All
 				Order allow,deny

@@ -4,7 +4,7 @@
 	</div>
 </div>
 <br clear="all" />
-<?php echo SessionHelper::flash(); ?>
+<?php echo $this->Session->flash(); ?>
 <form id="configure_form" action="/configure/2/<?php echo $service_plan_id; ?><?php echo (!empty($cart_item_id)) ? '/' . $cart_item_id : ''; ?>" method="POST">
 <input type="hidden" name="service_plan_id" value="<?php echo $service_plan_id; ?>" />
 <script type="text/javascript">

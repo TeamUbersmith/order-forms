@@ -13,7 +13,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-<?php echo SessionHelper::flash(); ?>
+<?php echo $this->Session->flash(); ?>
 <div class="prefix_1 grid_22 box">
 	<p>Pick a service plan to configure:</p>
 	<?php foreach ($service_plans as $service_plan_id => $service_plan) { ?>

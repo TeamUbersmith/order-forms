@@ -10,7 +10,7 @@
 </div>
 <form action="<?php echo $this->Html->url(array('controller' => 'configurator', 'action' => 'configure', 6));?>" method="POST" onsubmit="return check_required();">
 <br clear="all" />
-<?php echo SessionHelper::flash(); ?>
+<?php echo $this->Session->flash(); ?>
 <div class="grid_22 prefix_1 alpha omega">
 	<div class="grid_6 alpha">
 		<p class="order_summary"><?php echo __('Account Info'); ?></p>
