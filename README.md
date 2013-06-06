@@ -43,7 +43,7 @@ To get started:
 		cp app/Config/database.php.sample app/Config/database.php
 		cp app/Config/core.php.sample app/Config/core.php
 
-4. Edit `app/Config/database.php` with your database connection details. Whichever array you put the connection details in - either `production` or `test` - replace `{ENVIRONMENT}` in `SetEnv {ENVIRONMENT}` in step 5 and step 7 with the either `production` or `test`.
+4. Edit `app/Config/database.php` with your database connection details. Replace `{ENVIRONMENT}` in steps 5 and 7 with the array key you placed the connection details in - either `production` or `test`.
 
 5. Run the following command to install the cake_sessions table.
 
