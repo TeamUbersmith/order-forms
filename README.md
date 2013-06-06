@@ -43,15 +43,11 @@ To get started:
 		cp app/Config/database.php.sample app/Config/database.php
 		cp app/Config/core.php.sample app/Config/core.php
 
-4. Edit `app/Config/database.php` with your database connection details. Whichever array you put the connection details in - either `production` or `test` - replace `{ENVIRONMENT}` in `SetEnv {ENVIRONMENT}` with the either `production` or `test` in the virtual host file.
+4. Edit `app/Config/database.php` with your database connection details. Whichever array you put the connection details in - either `production` or `test` - replace `{ENVIRONMENT}` in `SetEnv {ENVIRONMENT}` in step 5 and step 7 with the either `production` or `test`.
 
-5. Run the following command to install the cake_sessions table. If you put the database connection details in the `test` array, you do not need to export the `CAKE_ENV` variable:
+5. Run the following command to install the cake_sessions table.
 
-		Console/cake schema create sessions
-
-If you put the database connection details in the `production` array, you have to export the `CAKE_ENV` variable so the cake console can connect to the database:
-
-		export CAKE_ENV=production; Console/cake schema create sessions
+		export CAKE_ENV={ENVIRONMENT}; Console/cake schema create sessions
 
 6. Edit `app/Config/core.php` with your preferences (relavant config is near the bottom of file)
 
