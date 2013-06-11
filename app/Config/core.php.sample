@@ -307,7 +307,7 @@ Configure::write('Ubersmith',
 		 * The ID can be found at Setup & Admin > Order Manager > Manage Order Queues in
 		 * your Ubersmith instance
 		 */
-		'online_order_queue_id' => 123,
+		'order_queue_id' => 123,
 		
 		/** 
 		 * Your organization's name, for display in various places like the page title
